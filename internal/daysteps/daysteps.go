@@ -2,6 +2,7 @@ package daysteps
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 	"time"
@@ -56,7 +57,7 @@ func DayActionInfo(data string, weight, height float64) string {
 	// В случае возникновения ошибки вывести её на экран и вернуть пустую строку
 	steps, duration, err := parsePackage(data)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return ""
 	}
 
@@ -86,15 +87,3 @@ func DayActionInfo(data string, weight, height float64) string {
 	result := fmt.Sprintf("Количество шагов: %d.\nДистанция составила %.2f км.\nВы сожгли %.2f ккал.\n", steps, dist, calories)
 	return result
 }
-
-// Добрый день!
-// При запуске тестов для daysteps.go почему-то выдаёт ошибки вида:
-//--- FAIL: TestDayStepsSuite/TestDayActionInfo/нулевая_продолжительность (0.00s)
-//daysteps_test.go:342:
-//			Error Trace:    C:/Users/mnn/Documents/Golang/Dev/go1fl-4-sprint-fin-mnn/internal/daysteps/daysteps_test.go:342
-//													C:/Users/mnn/go/pkg/mod/github.com/stretchr/testify@v1.10.0/suite/suite.go:115
-//			Error:          Should NOT be empty, but was
-//			Test:           TestDayStepsSuite/TestDayActionInfo/нулевая_продолжительность
-//			Messages:       Ожидался вывод в лог, но его нет
-
-// Не понятно, что проверялось. Причем здесь это?
